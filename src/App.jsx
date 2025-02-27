@@ -1,12 +1,33 @@
-import React from 'react'
+import React, { useState } from "react";
+import StepOne from "./components/StepOne";
+import StepTwo from "./components/StepTwo";
+import StepThree from "./components/StepThree";
+import StepFour from "./components/StepFour";
+
 
 const App = () => {
-  return (
-    <div className='text-3xl font-bold underline'>
-      hello world
-    
-    </div>
-  )
-}
+  const [step, setStep] = useState(1);
+  const [formData, setFormData] = useState({});
 
-export default App
+  const handleNext = () => setStep(step + 1);
+  const handleBack = () => setStep(step - 1);
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  return (
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      <div className="w-full max-w-lg p-6 shadow-xl rounded-2xl">
+        {step === 1 && <StepOne onNext={handleNext} onChange={handleChange} />}
+        {step === 2 && (
+          <StepTwo onNext={handleNext} onBack={handleBack} onChange={handleChange} />
+        )}
+        {step === 3 && (
+          <StepThree onNext={handleNext} onBack={handleBack} onChange={handleChange} />
+        )}
+        {step === 4 && <StepFour onBack={handleBack} />}
+      </div>
+    </div>
+  );
+};
+
+export default App;
