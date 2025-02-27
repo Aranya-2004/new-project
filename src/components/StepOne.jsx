@@ -12,7 +12,7 @@ const StepOne = ({ onNext, onChange }) => {
       <Input name="location" placeholder="Location" onChange={onChange} />
       <Input name="dob" type="date" onChange={onChange} />
       <Button onClick={onNext} className="w-full mt-4">
-        Next
+        Next button
       </Button>
     </CardContent>
   );
